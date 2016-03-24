@@ -50,7 +50,7 @@ Unites sets containing element `$left-index` and `$right-index`. If sets are equ
 AUTHOR
 ======
 
-titsuki <cookbook_000@yahoo.co.jp>
+titsuki <titsuki@cpan.org>
 
 COPYRIGHT AND LICENSE
 =====================

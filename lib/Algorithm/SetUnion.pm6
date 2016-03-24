@@ -87,7 +87,7 @@ Unites sets containing element C<<$left-index>> and C<<$right-index>>. If sets a
 
 =head1 AUTHOR
 
-titsuki <cookbook_000@yahoo.co.jp>
+titsuki <titsuki@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
