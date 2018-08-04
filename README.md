@@ -10,7 +10,7 @@ SYNOPSIS
 
     use Algorithm::SetUnion;
 
-    my $set-union = Algorithm::SetUnion.new(size => 5);
+    my $set-union = Algorithm::SetUnion.new(size => 4);
     $set-union.union(0,1);
     $set-union.union(1,2);
 
