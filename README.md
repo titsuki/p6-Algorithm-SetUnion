@@ -35,13 +35,13 @@ Sets the number of disjoint sets.
 METHODS
 -------
 
-### find(Int $index) returns Int:D
+### find(Int $index --> Int:D)
 
     my $root = $set-union.find($index);
 
 Returns the name(i.e. root) of the set containing element `$index`.
 
-### union(Int $left-index, Int $right-index) returns Bool:D
+### union(Int $left-index, Int $right-index --> Bool:D)
 
     $set-union.union($left-index, $right-index);
 
@@ -60,3 +60,4 @@ Copyright 2016 titsuki
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 This algorithm is from Tarjan, Robert Endre. "A class of algorithms which require nonlinear time to maintain disjoint sets." Journal of computer and system sciences 18.2 (1979): 110-127.
+

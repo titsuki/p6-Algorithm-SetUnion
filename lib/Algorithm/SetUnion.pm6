@@ -3,42 +3,44 @@ unit class Algorithm::SetUnion;
 
 use Algorithm::SetUnion::Node;
 
-has $.size;
+has Int $.size;
 has Algorithm::SetUnion::Node @.nodes;
 
-submethod BUILD(:$!size) {
-    loop (my $i = 0; $i < $!size; $i++) {
-	@!nodes.push(Algorithm::SetUnion::Node.new(parent => $i, size => 1));
+submethod BUILD(Int :$!size) {
+    for ^$!size -> $i {
+        @!nodes.push: Algorithm::SetUnion::Node.new(parent => $i, size => 1);
     }
 }
 
-method union(Int $left-index, Int $right-index) returns Bool:D {
+method union(Int $left-index, Int $right-index --> Bool:D) {
     my $left-root = self.find($left-index);
     my $right-root = self.find($right-index);
-    return False if ($left-root == $right-root);
+
+    return False if $left-root == $right-root;
     
-    if (@!nodes[$left-root].size < @!nodes[$right-root].size) {
-	@!nodes[$left-root].parent = $right-root;
-	@!nodes[$right-root].size = @!nodes[$left-root].size + @!nodes[$right-root].size;
+    if @!nodes[$left-root].size < @!nodes[$right-root].size {
+        @!nodes[$left-root].parent = $right-root;
+        @!nodes[$right-root].size = @!nodes[$left-root].size + @!nodes[$right-root].size;
     } else {
-	@!nodes[$right-root].parent = $left-root;
-	@!nodes[$left-root].size = @!nodes[$left-root].size + @!nodes[$right-root].size;
+        @!nodes[$right-root].parent = $left-root;
+        @!nodes[$left-root].size = @!nodes[$left-root].size + @!nodes[$right-root].size;
     }
-    return True;
+    True;
 }
 
-method find(Int $index) returns Int:D {
+method find(Int $index --> Int:D) {
     my $root = $index;
     my $current = $index;
-    while (@!nodes[$root].parent != $root) {
-	$root = @!nodes[$root].parent;
+
+    while @!nodes[$root].parent != $root {
+        $root = @!nodes[$root].parent;
     }
-    while (@!nodes[$current].parent != $current) {
-	my $save = @!nodes[$current].parent;
-	@!nodes[$current].parent = $root;
-	$current = $save;
+    while @!nodes[$current].parent != $current {
+        my $save = @!nodes[$current].parent;
+        @!nodes[$current].parent = $root;
+        $current = $save;
     }
-    return $root;
+    $root;
 }
 
 =begin pod
@@ -73,13 +75,13 @@ Sets the number of disjoint sets.
 
 =head2 METHODS
 
-=head3 find(Int $index) returns Int:D
+=head3 find(Int $index --> Int:D)
 
        my $root = $set-union.find($index);
 
 Returns the name(i.e. root) of the set containing element C<<$index>>.
 
-=head3 union(Int $left-index, Int $right-index) returns Bool:D
+=head3 union(Int $left-index, Int $right-index --> Bool:D)
 
        $set-union.union($left-index, $right-index);
 
