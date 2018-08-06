@@ -1,5 +1,5 @@
 use v6;
-unit class Algorithm::SetUnion;
+unit class Algorithm::SetUnion:auth<titsuki>:ver<0.0.1>;
 
 use Algorithm::SetUnion::Node;
 
